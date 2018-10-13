@@ -1,7 +1,8 @@
 import unittest
 
 def sort_nums(incoming):
-    pass
+    while len(incoming) > 0:
+        x = incoming.popitem()
 
 
 class TestExtremeOrders(unittest.TestCase):
