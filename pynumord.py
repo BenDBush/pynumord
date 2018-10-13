@@ -1,6 +1,7 @@
 import unittest
 
 def sort_nums(incoming):
+    sought = 0
     while len(incoming) > 0:
         x = incoming.popitem()
 
