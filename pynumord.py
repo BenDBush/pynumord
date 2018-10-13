@@ -8,8 +8,13 @@ def sort_nums(incoming):
         if key == sought:
             yield value
             sought += 1
+            check_store(sought, store_early)
         else:
             store_early[key] = value
+
+
+def check_store(sought, store):
+    pass
 
 
 class TestExtremeOrders(unittest.TestCase):
