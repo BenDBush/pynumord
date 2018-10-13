@@ -1,9 +1,13 @@
 import unittest
 
 def sort_nums(incoming):
-    sought = 0
+    sought = 1
     while len(incoming) > 0:
-        x = incoming.popitem()
+        key, value = incoming.popitem()
+        if key == sought:
+            yield value
+        else:
+            pass
 
 
 class TestExtremeOrders(unittest.TestCase):
