@@ -2,12 +2,14 @@ import unittest
 
 def sort_nums(incoming):
     sought = 1
+    store_early = {}
     while len(incoming) > 0:
         key, value = incoming.popitem()
         if key == sought:
             yield value
+            sought += 1
         else:
-            pass
+            store_early[key] = value
 
 
 class TestExtremeOrders(unittest.TestCase):
