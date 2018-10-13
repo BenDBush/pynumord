@@ -35,6 +35,12 @@ class TestExtremeOrders(unittest.TestCase):
         self.assertEqual(array, ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'])
 
 
+    def test_scrambled(self):
+        dict_scrambled = {3: 'c', 7: 'g', 4: 'd', 9: 'i', 1: 'a', 6: 'f', 2: 'b', 8: 'h', 5: 'e', 10: 'j'}
+        array = [i for i in sort_nums(dict_scrambled)]
+        self.assertEqual(array, ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'])
+
+
     def test_big(self):
         dict_big = {i: 'a' for i in range(10000)}
         del dict_big[0]
