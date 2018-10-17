@@ -35,15 +35,27 @@ def check_store(seek, store):
 
 
 class TestOrders(unittest.TestCase):
-    @given(value_list = st.lists(st.characters()), integer_list = st.integers(1))  # how can I scramble the dict entries, while knowing what order I want them out in?
-    def test_sorting(self, chars):
-        test_dict = dict(zip(range(len(chars)), chars))
+    @given(value_list = st.lists(st.characters()))  # how can I scramble the dict entries, while knowing what order I want them out in?
+    def test_sorting(self, value_list):
+        test_dict = dict(zip(range(len(value_list)), value_list))
         if test_dict:
             del test_dict[0]
-            del chars[0]
+            del value_list[0]
 
-        array = [i for i in sort_nums(test_dict)]
-        self.assertEqual(array, chars)
+        @given(order_dict_out = st.lists(st.integers(min_value = 1, max_value = len(test_dict)), 
+                                        min_size = len(test_dict), 
+                                        max_size = len(test_dict),
+                                        unique = True))
+        def test_orders():
+            assume(i == 0 or i in order_dict_out for i in range(len(test_dict)))
+            scrambled_dict = {}
+            for key in order_dict_out:  # create a dictionary identical to test_dict, but entering key/value pairs in random order
+                scrambled_dict[key] = test_dict[key]
+            
+            array = [i for i in sort_nums(scrambled_dict)]
+            self.assertEqual(array, chars)
+
+
 
 
 
