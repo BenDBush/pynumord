@@ -4,7 +4,8 @@ from hypothesis import given, assume, settings
 import hypothesis.strategies as st
 
 def sort_nums(incoming):
-    """side effect: deletes incoming as it processes it"""
+    """side effect: deletes incoming as it processes it. If we wanted to avoid that,
+    we could copy incoming to a local variable."""
     sought = 1
     store_early = {}
     while len(incoming) > 0:
